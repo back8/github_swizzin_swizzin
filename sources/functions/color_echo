@@ -203,7 +203,7 @@ export -f do_the_wrap
 # Removes color exit codes from stdin
 function strip_ansi() {
     if [[ $strip_ansi_from_log == "true" ]]; then
-        sed 's/\x1B\[[0-9;]\+[A-Za-z]//g'
+        sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | sed 's/\x1b(B//g'
     else
         cat
     fi
